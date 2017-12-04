@@ -1,0 +1,25 @@
+.row:not(last-child) {
+    margin-bottom: 3rem;
+}
+.archived {
+    background-color: grey;
+    color:transparent;
+    -webkit-background-clip: text;
+}
+.new {
+    background-color: rgb(35, 202, 20);
+    color:transparent;
+    -webkit-background-clip: text;
+}
+
+.working {
+    background-color: rgb(0, 132, 255);
+    color:transparent;
+    -webkit-background-clip: text;
+}
+
+.delivered {
+    background-color: rgb(6, 68, 6);
+    color:transparent;
+    -webkit-background-clip: text;
+}

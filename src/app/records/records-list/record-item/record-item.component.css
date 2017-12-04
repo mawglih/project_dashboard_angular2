@@ -1,0 +1,31 @@
+.heading-record {
+    color: white !important;
+    padding:10px;
+    background-color: darkgreen;
+}
+.btn-darkgreen {
+    background-color: rgb(44, 204, 44);
+    color: white;
+    width: 150px;
+}
+.badge-record {
+    background-color: darkred;
+}
+.btn-size {
+    width: 150px;
+    color: white;
+}
+.archived {
+    background-color: grey;
+}
+.new {
+    background-color: rgb(35, 202, 20);
+}
+
+.working {
+    background-color: rgb(0, 132, 255);
+}
+
+.delivered {
+    background-color: rgb(6, 68, 6);
+}
