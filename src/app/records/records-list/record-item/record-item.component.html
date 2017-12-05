@@ -1,9 +1,14 @@
-<a href="#" (click)="getRecordDetail(index)" class="list-group-item clearfix">
-    <div class="pull-left">
-      <h3 class="list-group-item-heading bg-success heading-record">{{record.title}}</h3>
-      <p class="list-group-item-text">{{record.division}}</p>
+<div class="col-sm-12 col-md-4 list-group-item clearfix">
+    <div (click)="getRecordDetail(index)">
+        <a href="#">
+            <div class="pull-left">
+                <h3 class="list-group-item-heading bg-success heading-record">{{record.title}}</h3>
+                <p class="list-group-item-text">{{record.division}}</p>
+            </div>
+            <button class="pull-right btn btn-size {{record.status}}" type="button">
+              <h5>Status:</h5> <span class="badge badge-record"> {{record.status}}</span></button>
+        </a>
     </div>
-    <button class="pull-right btn btn-size {{record.status}}"  type="button">
-      <h5>Status:</h5> <span class="badge badge-record"> {{record.status}}</span></button>
-  </a>
-  <!-- "{'archived-class': record.status == 'archived', 'new-class': record.status == 'new', 'delivered-class': record.status == 'delivered', 'working-class': record.status == 'working'}" -->
+    <button class="btn btn-danger list-group-item list-group-item-danger" (click)="onEditRecord(index)">Edit record</button>
+
+</div>

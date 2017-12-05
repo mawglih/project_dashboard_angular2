@@ -1,11 +1,17 @@
 <div class="row">
-  <div class="col-md-5">
-    <app-records-list></app-records-list>
-  </div>
-  <div class="col-md-7">
-    <app-record-detail *ngIf="selectedRecord; else infoText" [record]="selectedRecord"></app-record-detail>
-    <ng-template #infoText>
-      <h3 class="bg-danger text-center record-select">Please select a Record on the left to see details</h3>
-    </ng-template>
-  </div>
+    <div class="col-md-7 col-sm-12">
+        <app-records-edit></app-records-edit>
+    </div>
+    <div class="col-md-5 col-sm-12">
+        <app-record-detail *ngIf="selectedRecord; else infoText" [record]="selectedRecord"></app-record-detail>
+        <ng-template #infoText>
+            <h3 class="bg-danger text-center record-select">Please select a Record to see details</h3>
+        </ng-template>
+        <hr>
+
+
+    </div>
+    <div class="row">
+        <app-records-list></app-records-list>
+    </div>
 </div>

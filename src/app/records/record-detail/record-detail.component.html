@@ -1,46 +1,36 @@
 <div class="row">
-  <div class="col-xs-12">
-    <h2 class="text-center">{{record.title}}</h2>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <h3><b>Division: </b>{{record.division}}</h3>
-  </div>
-</div>
-<div class="row">
-    <div class="col-xs-8">
-        <h4>Project Owner</h4>
-        <input type="text" class="form-control" (keyup)="onKeyName($event)"  [(value)]="record.project_owner">  
-    </div>
-  
-</div>
-<div class="row">
-    <div class="col-xs-8">
-      <h4>Project Budget</h4>
-      <input type="text" class="form-control" (keyup)="onKeyBudget($event)" [value]="record.budget | currency:'USD':'symbol'">
-    </div>
-    
-</div>
-<div class="row">
-    <div class="col-xs-8">
-      <h4 class="{{record.status}}">Project Status: </h4>
-      <input type="text" class="form-control" (keyup)="onKeyStatus($event)" [value]="record.status"> 
-    </div>
-    
-  </div>
-  <div class="row">
-      <div class="col-xs-6">
-        <p>created: {{record.created.toLocaleDateString()}}</p>
-      </div>
-      <div class="col-xs-6">
-        <p>modified: {{record.modified.toLocaleDateString()}}</p>
-      </div>
-  </div>
-  <div class="row">
     <div class="col-xs-12">
-      <p>New owner: {{name}}</p>
-      <p>New Budget: {{budget | currency:'USD':'symbol'}}</p>
-      <p>New Status: {{status}}</p>
+        <h2 class="text-center">{{record.title}}</h2>
     </div>
-  </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <h3><b>Division: </b>{{record.division}}</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-8">
+        <h4>Project Owner</h4> : {{record.project_owner}}
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-xs-8">
+        <h4>Project Budget</h4>: {{record.budget | currency:'USD':'symbol'}}
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-xs-8 {{record.status}}">
+        <h4 class="{{record.status}}">Project Status: </h4> {{record.status}}
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-xs-6">
+        <p>created: {{record.created.toLocaleDateString()}}</p>
+    </div>
+    <div class="col-xs-6">
+        <p>modified: {{record.modified.toLocaleDateString()}}</p>
+    </div>
+</div>

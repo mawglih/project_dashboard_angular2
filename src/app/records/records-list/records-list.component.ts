@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Record } from '../record.model';
 import { RecordService } from '../record.service';
 import { FormGroup, FormControl} from '@angular/forms';
-import { Daterangepicker,DaterangepickerConfig, DaterangePickerComponent } from 'ng2-daterangepicker';
-
+import { Daterangepicker, DaterangepickerConfig, DaterangePickerComponent } from 'ng2-daterangepicker';
+import { Subscription } from 'rxjs/Subscription';
 import * as moment from 'moment';
 
 @Component({
@@ -12,8 +12,9 @@ import * as moment from 'moment';
   styleUrls: ['./records-list.component.css']
 })
 
-export class RecordsListComponent implements OnInit {
+export class RecordsListComponent implements OnInit, OnDestroy {
   @ViewChild(DaterangePickerComponent)
+  subscription: Subscription;
   private picker: DaterangePickerComponent;
   public dateInputs: any = [
     {
@@ -37,7 +38,7 @@ export class RecordsListComponent implements OnInit {
 public mainInput = {
     start: moment().subtract(12, 'month'),
     end: moment().subtract(6, 'month')
-}
+};
 
 
 
@@ -60,20 +61,24 @@ public eventLog = '';
            'Last 12 Months': [moment().subtract(12, 'month'), moment()],
         }
     };
-    
      this.singleDate = Date.now();
      }
 
   ngOnInit() {
+    this.subscription  = this.recordService.recordChanged
+        .subscribe(
+            (records: Record[]) => {
+                this.records = records;
+            }
+        );
     this.records = this.recordService.getRecords();
   }
+
     private selectedDate(value: any, dateInput: any) {
       dateInput.start = value.start;
       dateInput.end = value.end;
-      
-      let startDate = dateInput.start.toDate();
-      let endDate = dateInput.end.toDate();
-  
+      const startDate = dateInput.start.toDate();
+      const endDate = dateInput.end.toDate();
   }
 
   private applyDate(value: any, dateInput: any) {
@@ -82,10 +87,10 @@ public eventLog = '';
   }
 
   public calendarEventsHandler(e:any) {
-      
       this.eventLog += '\nEvent Fired: ' + e.event.type;
   }
-  
-  
 
+  ngOnDestroy() {
+      this.subscription.unsubscribe();
+  }
 }

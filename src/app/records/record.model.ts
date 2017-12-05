@@ -7,7 +7,7 @@ export class Record {
     public created: any;
     public modified: any;
 
-    constructor(title: string, division:string, project_owner:string, budget:number, status:string, created:any, modified:any) {
+    constructor(title: string, division: string, project_owner: string, budget: number, status: string, created: any, modified: any) {
         this.title = title;
         this.division = division;
         this.project_owner = project_owner;

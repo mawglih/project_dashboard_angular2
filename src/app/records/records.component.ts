@@ -6,7 +6,7 @@ import { Record } from './record.model';
   selector: 'app-records',
   templateUrl: './records.component.html',
   styleUrls: ['./records.component.css'],
-  providers: [RecordService]
+  
 })
 export class RecordsComponent implements OnInit {
   selectedRecord: Record;
@@ -16,7 +16,7 @@ export class RecordsComponent implements OnInit {
     this.recordService.recordSelected
       .subscribe(
         (record: Record) => {
-          this.selectedRecord = record
+          this.selectedRecord = record;
         }
       );
   }

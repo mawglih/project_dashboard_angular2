@@ -1,0 +1,61 @@
+<div class="row">
+    <div class="col-sm-7 form-record">
+        <form (ngSubmit)="onSubmit(f)" class="form" #f="ngForm">
+            <legend>
+                <h2>Add/Update Record</h2>
+            </legend>
+            <div class="row">
+                <div class="col-xs-6 form-group">
+                    <label for="title">Title</label>
+                    <input type="text" class="form-control" name="title" [ngModel]="title" id="title" placeholder="Enter new title for project">
+                </div>
+                <div class="col-xs-6 form-group">
+                    <label for="division">Division</label>
+                    <input type="text" class="form-control" name="division" ngModel id="division" placeholder="Enter division name">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 form-group">
+                    <label for="project_owner">Project Owner</label>
+                    <input type="text" class="form-control" name="project_owner" ngModel id="project_owner" placeholder="Enter project owner">
+                </div>
+                <div class="col-xs-6 form-group">
+                    <label for="budget">Budget</label>
+                    <div class="input-group">
+                        <span class="input-group-addon">$</span>
+                        <input type="number" class="form-control" name="budget" ngModel id="budget" pattern="^[1-9]+[0-9]*$" placeholder="Enter budget in $">
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 form-group">
+                    <label for="status">Status</label>
+                    <select ngModel class="form-control" name="status">
+                      <option *ngFor="let st of status" [ngValue]="st">{{st}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 form-group">
+                    <label for="name">Created</label>
+                    <input type="date" class="form-control" name="created" ngModel id="name" placeholder="Start date">
+                </div>
+                <div class="col-xs-6 form-group">
+                    <label for="name">Modified</label>
+                    <input type="date" class="form-control" name="modified" ngModel id="name" placeholder="modify date">
+                </div>
+            </div>
+            <div class="row">
+
+                <button class="btn btn-success" type="submit">{{ editMode ? 'Update' : 'Add' }}</button>
+
+
+                <button class="btn btn-danger" *ngIf="editMode" type="button" (click)="onDelete()">Delete</button>
+
+
+                <button class="btn btn-primary" type="button" (click)="onClear()">Clear</button>
+
+            </div>
+        </form>
+    </div>

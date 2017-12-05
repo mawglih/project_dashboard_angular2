@@ -1,9 +1,12 @@
 import { Record } from './record.model';
 import { EventEmitter } from '@angular/core';
 import * as moment from 'moment';
+import { Subject } from 'rxjs/Subject';
 export class RecordService {
-    recordSelected = new EventEmitter<Record>();
-    indexSelected = new EventEmitter<Number>();
+    recordSelected = new Subject<Record>();
+    indexSelected = new Subject<number>();
+    recordChanged = new Subject<Record[]>();
+    startedEditing = new Subject<number>();
     index:number;
 
     private records: Record[] = [
@@ -282,6 +285,9 @@ export class RecordService {
     getRecords() {
         return this.records.slice();
     }
+    getRecord(index: number) {
+      return this.records[index];
+    }
     updateDateRange(startDate, endDate) {
         const filteredRecords: Record[] = [];
         for(let m of this.records.slice()) {
@@ -294,12 +300,20 @@ export class RecordService {
 
     updateRecord(index: number, newRecord: Record) {
         this.records[index] = newRecord;
+        this.recordChanged.next(this.records.slice());
     }
-    getRecordSelected(record,index) {
-        
+    getRecordSelected(record, index) {
         this.index = index;
-        console.log("from service index: ",this.index);
-        this.recordSelected.emit(record);
-        this.indexSelected.emit(index);
+        this.recordSelected.next(record);
+        this.indexSelected.next(index);
+    }
+    addRecord(record: Record) {
+      this.records.push(record);
+      console.log(record);
+      this.recordChanged.next(this.records.slice());
+    }
+    deleteRecord(index: number) {
+      this.records.splice(index, 1);
+      this.recordChanged.next(this.records.slice());
     }
 }
